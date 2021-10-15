@@ -23,6 +23,24 @@ impl Component for Model {
     match msg {
       Msg::AddOne => {
         self.value += 1;
+
+        loop {
+          self.value += 1;
+          if self.value == 3 {
+            println!("three");
+
+            // Skip the rest of this iteration
+            continue;
+          }
+          println!("{}", self.value);
+          if self.value > 250000 {
+            println!("OK, that's enough");
+
+            // Exit this loop
+            break;
+          }
+        }
+
         // the value has changed so we need to
         // re-render for it to appear on the page
         true
